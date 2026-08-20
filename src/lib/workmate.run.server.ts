@@ -7,11 +7,13 @@ import {
   emailPrompt,
   notesPrompt,
   planPrompt,
+  PlanInput,
   type EmailInputType,
 } from "./workmate.shared";
 import { z } from "zod";
 
-export { EmailInput, NotesInput, PlanInput } from "./workmate.shared";
+export { EmailInput, NotesInput } from "./workmate.shared";
+export { PlanInput };
 
 async function run<T>(schema: z.ZodType<T>, prompt: string): Promise<T> {
   try {
@@ -48,6 +50,6 @@ export function runNotes(notes: string) {
   return run(SummarySchema, notesPrompt(notes));
 }
 
-export function runPlan(data: z.infer<typeof import("./workmate.shared").PlanInput>) {
+export function runPlan(data: z.infer<typeof PlanInput>) {
   return run(PlanSchema, planPrompt(data));
 }
