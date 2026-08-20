@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailRouteImport } from './routes/email'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SummarizerRouteImport } from './routes/summarizer'
 import { Route as TasksRouteImport } from './routes/tasks'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const EmailRoute = EmailRouteImport.update({
   id: '/email',
   path: '/email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SummarizerRoute = SummarizerRouteImport.update({
@@ -38,12 +44,14 @@ const TasksRoute = TasksRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/email': typeof EmailRoute
+  '/settings': typeof SettingsRoute
   '/summarizer': typeof SummarizerRoute
   '/tasks': typeof TasksRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/email': typeof EmailRoute
+  '/settings': typeof SettingsRoute
   '/summarizer': typeof SummarizerRoute
   '/tasks': typeof TasksRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/email': typeof EmailRoute
+  '/settings': typeof SettingsRoute
   '/summarizer': typeof SummarizerRoute
   '/tasks': typeof TasksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/email' | '/summarizer' | '/tasks'
+  fullPaths: '/' | '/email' | '/settings' | '/summarizer' | '/tasks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/email' | '/summarizer' | '/tasks'
-  id: '__root__' | '/' | '/email' | '/summarizer' | '/tasks'
+  to: '/' | '/email' | '/settings' | '/summarizer' | '/tasks'
+  id: '__root__' | '/' | '/email' | '/settings' | '/summarizer' | '/tasks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EmailRoute: typeof EmailRoute
+  SettingsRoute: typeof SettingsRoute
   SummarizerRoute: typeof SummarizerRoute
   TasksRoute: typeof TasksRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/email'
       fullPath: '/email'
       preLoaderRoute: typeof EmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/summarizer': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EmailRoute: EmailRoute,
+  SettingsRoute: SettingsRoute,
   SummarizerRoute: SummarizerRoute,
   TasksRoute: TasksRoute,
 }
