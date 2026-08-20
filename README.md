@@ -1,112 +1,65 @@
 # WorkMate AI
 
-Build a functional responsive web app called "WorkMate AI – Workplace Productivity Assistant".
+WorkMate AI is a workplace productivity assistant that helps professionals draft emails, summarize meeting notes, and plan tasks with AI. It is built as a responsive web app using TanStack Start, React, TypeScript, and Tailwind CSS.
 
-PURPOSE:
+## Features
 
-Create an AI workplace productivity assistant that helps users write professional emails, summarize meeting notes, and organize tasks.
+- **Smart Email Generator** — Enter the purpose and key information, choose a tone (Formal, Friendly, or Persuasive), and generate a complete subject line and email body. Copy, regenerate, or clear the result in one click.
+- **Meeting Notes Summarizer** — Paste raw meeting notes and receive a structured summary with key decisions, action items, and deadlines. The AI only uses what you provide and never invents facts.
+- **AI Task Planner** — Add multiple tasks with deadlines and priorities, then generate a prioritized daily or weekly schedule with suggested time slots and clear reasoning. Mark tasks as completed as you work through them.
+- **Settings** — Set your default email tone and planning horizon so the app matches your workflow.
 
-REQUIRED FEATURES:
+## Responsible AI
 
-1. SMART EMAIL GENERATOR
+WorkMate AI displays a **Responsible AI Notice** on every page: AI-generated content may contain errors or incomplete information. Always review and verify important information before using it.
 
-- User enters the purpose/key information of an email.
+The prompts are grounded with strict rules: the AI must not invent names, dates, deadlines, or decisions. If information is missing, it says so clearly.
 
-- User selects tone: Formal, Friendly, or Persuasive.
+## Tech Stack
 
-- AI generates a professional email with a subject line.
+- [TanStack Start](https://tanstack.com/start) — full-stack React framework
+- [React 19](https://react.dev)
+- [TypeScript](https://www.typescriptlang.org)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [Lovable AI Gateway](https://docs.lovable.dev/features/ai-gateway) — for AI completions
 
-- Include Copy, Regenerate, and Clear buttons.
+## Project Structure
 
-2. MEETING NOTES SUMMARIZER
+```
+src/
+  components/        # Shared UI components (AppShell, OutputPanel, etc.)
+  lib/               # Server functions, AI logic, schemas, and prompts
+  routes/            # TanStack Start file-based routes
+  styles.css         # Global styles and design tokens
+  router.tsx         # Router setup
+  start.ts           # App start configuration
+public/              # Static assets
+```
 
-- User pastes meeting notes.
+## Getting Started
 
-- AI generates:
-
-  - Summary
-
-  - Key Decisions
-
-  - Action Items
-
-  - Deadlines
-
-- Never invent missing information.
-
-- Include Copy, Regenerate, and Clear buttons.
-
-3. AI TASK PLANNER
-
-- User enters multiple tasks with optional deadlines and priorities.
-
-- AI creates a prioritized daily or weekly schedule.
-
-- Prioritize tasks based on urgency, deadline, importance, and effort.
-
-- Display tasks clearly with priority, suggested time, deadline, and status.
-
-- Allow users to mark tasks as Completed.
-
-UI REQUIREMENTS:
-
-- Professional modern dashboard.
-
-- Sidebar navigation with:
-
-  Dashboard
-
-  Email Generator
-
-  Meeting Summarizer
-
-  Task Planner
-
-  Settings
-
-- Dashboard should contain three feature cards linking to each tool.
-
-- Each tool must have a clear Input section and AI Output section.
-
-- Include loading and error states.
-
-- Fully responsive on desktop and mobile.
-
-- Use clean typography, cards, icons, spacing, and professional colors.
-
-RESPONSIBLE AI:
-
-Display this disclaimer on the application:
-
-"Responsible AI Notice: AI-generated content may contain errors or incomplete information. Always review and verify important information before using it."
-
-The AI must not fabricate information, deadlines, decisions, or facts. If information is missing, clearly say that it was not provided.
-
-FUNCTIONALITY:
-
-This must be a working application, not a static mockup. Connect the features to an available AI API/integration supported by Lovable. User inputs must produce actual AI-generated outputs.
-
-Keep the implementation simple and focused. Prioritize the three required AI features, functionality, responsive design, and professional UI over unnecessary features.
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://workmate-ai-buddy-04.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/c38a2238-8955-475c-bea1-61c2c2f338ca).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+1. Install dependencies:
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
 ```
+
+2. Run the development server:
+
+```sh
+bun run dev
+```
+
+3. Open the app in your browser at `http://localhost:8080`.
+
+## Environment Variables
+
+The app uses Lovable AI Gateway for AI features. Required secrets are managed through Lovable Cloud and injected at runtime. No manual `.env` setup is needed when running inside the Lovable environment.
+
+## Deployment
+
+The project is developed in [Lovable](https://lovable.dev). Connect the project to GitHub from the Lovable editor (Plus menu → GitHub → Connect project) to enable two-way sync, then deploy from your GitHub repository or continue iterating in Lovable.
+
+## License
+
+This project is your own code and is free to modify, host, and ship as you see fit.
